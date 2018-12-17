@@ -7,6 +7,7 @@ public class Main {
         Board board = new Board();
         boolean choiceMade = false;
         Scanner scanner = new Scanner(System.in);
+        Scanner hitsScanner = new Scanner(System.in);
         System.out.println("Welcome to Warships!");
 
         while(!choiceMade) {
@@ -23,8 +24,23 @@ public class Main {
                     Player secondPlayer = new Player(secondPlayerName, false, board.getSecondBoard());
                     game.setupGame(firstPlayer);
                     game.setupGame(secondPlayer);
-                    game.fireMissile(1, 1, secondPlayer);
-                    board.getBoard(secondPlayer.getBoard());
+                    byte firstHits = 0;
+                    byte secondHits = 0;
+                    String tempFirstX;
+                    String tempFirstY;
+                    byte firstX;
+                    byte firstY;
+                    while (firstHits != 9 || secondHits != 9) {
+                        System.out.print(firstPlayer.getName() + ", take your shot - x-coordinate: ");
+                        try {
+                            tempFirstX = hitsScanner.nextLine();
+                            firstX = Byte.parseByte(tempFirstX);
+                        } catch (NumberFormatException NFE) {
+                            System.out.println("Not a coordinate - try again.");
+                        }
+                        System.out.print("\ny-coordinate: ");
+                        tempFirstY = hitsScanner.nextLine();
+                    }
                     break;
                 case "2":
                     System.exit(0);
@@ -34,6 +50,5 @@ public class Main {
                     break;
             }
         }
-
     }
 }
