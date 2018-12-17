@@ -47,10 +47,10 @@ public class Board {
         x2 -= 1;
         y1 -= 1;
         y2 -= 1;
-        boolean isSet = false;
+        boolean isSet;
         if (!board[y1][x1]) {
-           board[y1][x1] = true;
            if (!board[y2][x2]) {
+               board[y1][x1] = true;
                board[y2][x2] = true;
                if (x1 == x2 && y2-2 > y1 && !board[y2-2][x2] && !board[y2-1][x2]) {
                    board[y2-2][x2] = true;
@@ -89,18 +89,28 @@ public class Board {
                } else if (x2+1 == x1 && y2 == y1) {
                    isSet = true;
                } else {
-                   System.out.print("Tile already occupied - try again.");
+                   System.out.print("Not a valid placement - try again.");
+                   board[y1][x1] = false;
+                   board[y2][x2] = false;
                    return false;
                }
            } else {
-               System.out.print("Tile already occupied - try again.");
+               System.out.print("Not a valid placement - try again.");
                return false;
            }
         } else {
-            System.out.print("Tile already occupied - try again.");
+            System.out.print("Not a valid placement - try again.");
             return false;
         }
         return isSet;
+    }
+
+    public boolean checkTile(boolean[][] enemyBoard, int x, int y) {
+        if (enemyBoard[y][x]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -18,6 +18,10 @@ public class Player {
         return board;
     }
 
+    public void setBoard(Player player, int x, int y) {
+        player.board[y][x] = false;
+    }
+
     public boolean isGoesFirst() {
         return goesFirst;
     }

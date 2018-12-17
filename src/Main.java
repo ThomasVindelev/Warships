@@ -21,7 +21,10 @@ public class Main {
                     System.out.print("Please enter the second players name: ");
                     String secondPlayerName = scanner.nextLine();
                     Player secondPlayer = new Player(secondPlayerName, false, board.getSecondBoard());
-                    game.PlayGame(firstPlayer, secondPlayer);
+                    game.setupGame(firstPlayer);
+                    game.setupGame(secondPlayer);
+                    game.fireMissile(1, 1, secondPlayer);
+                    board.getBoard(secondPlayer.getBoard());
                     break;
                 case "2":
                     System.exit(0);
