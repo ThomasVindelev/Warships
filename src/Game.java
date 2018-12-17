@@ -53,12 +53,14 @@ public class Game {
 
     }
 
-    public void fireMissile(int x, int y, Player enemyPlayer) {
+    public boolean fireMissile(int x, int y, Player enemyPlayer) {
         if (board.checkTile(enemyPlayer.getBoard(), x, y)) {
             System.out.print("It's a direct hit!\n");
             enemyPlayer.setBoard(enemyPlayer, x, y);
+            return true;
         } else {
             System.out.print("It's a miss!\n");
+            return false;
         }
     }
 }
